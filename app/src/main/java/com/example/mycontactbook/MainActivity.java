@@ -1,5 +1,6 @@
 package com.example.mycontactbook;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private MyContactsDatabase myContactsDatabase;
     private ArrayList<Contact> contactArrayList = new ArrayList<>();
     private ContactAdapter contactAdapter;
+    private MainActivityButtonHandler buttonHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        buttonHandler = new MainActivityButtonHandler(this);
+        binding.setButtonHandler(buttonHandler);
+
+        RecyclerView recyclerView = binding.layoutContentMain.recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
@@ -82,12 +87,24 @@ public class MainActivity extends AppCompatActivity {
 //        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addAndEditContact(false, null, -1);
-            }
-        });
+//        binding.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                addAndEditContact(false, null, -1);
+//            }
+//        });
+    }
+
+    public class MainActivityButtonHandler {
+        Context context;
+
+        public MainActivityButtonHandler(Context context) {
+            this.context = context;
+        }
+
+        public void onButtonClicked(View view) {
+            addAndEditContact(false, null, -1);
+        }
     }
 
     public void addAndEditContact(boolean isUpdate, Contact contact, int position) {

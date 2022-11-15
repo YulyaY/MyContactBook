@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp"
-    android:layout_margin="2dp">
-
-    <LinearLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <data>
+        
+        <variable
+            name="contact"
+            type="com.example.mycontactbook.Contact" />
+        
+    </data>
+    
+    <androidx.cardview.widget.CardView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="4dp">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardCornerRadius="4dp"
+        android:layout_margin="2dp">
 
-        <TextView
-            android:id="@+id/firstNameTextView"
-            android:text="First name"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
 
-        <TextView
-            android:id="@+id/lastNameTextView"
-            android:text="Last name"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/firstNameTextView"
+                android:text="@{contact.firstName}"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/emailTextView"
-            android:text="Email"
-            android:textStyle="italic"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/lastNameTextView"
+                android:text="@{contact.lastName}"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/phoneNumberNameTextView"
-            android:text="Phone Number"
-            android:textStyle="italic"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/emailTextView"
+                android:text="@{contact.email}"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/phoneNumberNameTextView"
+                android:text="@{contact.phoneNumber}"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
 
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+    
+</layout>
